@@ -1,0 +1,1 @@
+docker exec -it broker /usr/bin/kafka-topics --list --bootstrap-server broker:9092 

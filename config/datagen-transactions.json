@@ -1,0 +1,14 @@
+{
+    "name": "datagen-transactions",
+    "config": {
+        "connector.class": "io.confluent.kafka.connect.datagen.DatagenConnector",
+        "kafka.topic": "transactions",
+        "quickstart": "transactions",
+        "key.converter": "org.apache.kafka.connect.storage.StringConverter",        
+        "value.converter": "org.apache.kafka.connect.json.JsonConverter",        
+        "value.converter.schemas.enable": "false",
+        "value.converter.schema.registry.url": "http://schema-registry-1:8081",
+        "max.interval": 1000,
+        "tasks.max": "1"
+    }
+}

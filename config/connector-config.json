@@ -1,0 +1,31 @@
+{
+    "name": "mongo-connector-source",
+    "config": {
+        "connector.class": "com.mongodb.kafka.connect.MongoSourceConnector",
+        "connection.uri": "mongodb://data-platform-cdc:password@mongo:27017/?replicaSet=rs0",
+        "database": "outbox",
+        "collection": "loans",
+        "value.converter.schemas.enable": "false",
+        "value.converter": "org.apache.kafka.connect.json.JsonConverter",
+        "key.converter.schemas.enable": "false",
+        "key.converter": "org.apache.kafka.connect.json.JsonConverter",
+        "publish.full.document.only": "true",
+        "change.stream.full.document": "updateLookup",
+        "output.schema.infer.value": "true",
+        "output.format.value": "schema",
+        "output.data.format": "JSON",
+        "output.json.formatter": "com.mongodb.kafka.connect.source.json.formatter.DefaultJson",
+        "pipeline": "[{\"$match\": {\"operationType\": \"insert\"}}]",
+
+        "transforms": "MoveToHeader,extractPayload",        
+        "transforms.MoveToHeader.type": "org.util.kafka.smt.HeaderFromFields",
+        "transforms.MoveToHeader.jsonpaths": "$.eventId,$.aggregateId,$.aggregateType,$.eventDate,$.eventType,$.propagation.traceparent,$.nonfield",
+        "transforms.MoveToHeader.headersnames": "eventId,aggregateId,aggregateType,eventDate,eventType,traceparent,nonfield",
+        "transforms.MoveToHeader.inputType": "struct",
+        "transforms.MoveToHeader.mode": "copy",
+        "transforms.extractPayload.type": "org.apache.kafka.connect.transforms.ExtractField$Value",
+        "transforms.extractPayload.field": "payload"
+
+ 
+    }
+}
