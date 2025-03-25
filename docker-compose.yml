@@ -53,8 +53,8 @@ services:
       - |
         echo "Installing Mobngo DB Connector"
         confluent-hub install --no-prompt mongodb/kafka-connect-mongodb:${MONGODB_CONNECTOR_VERSION}        
-        echo "Installing kafka-connect-json-schema SMT"
-        confluent-hub install jcustenborder/kafka-connect-json-schema:latest
+        echo "Installing Confluent transform"      
+        confluent-hub install --no-prompt confluentinc/connect-transforms:latest
         echo "Installing Datagen Connector"
         confluent-hub install --no-prompt confluentinc/kafka-connect-datagen:latest
         

@@ -33,12 +33,14 @@ Ohterwise you can:
 
 Start consume messages:
 
-    10_consume_messages.sh
+    10_consume_messages.sh <TOPIC_NAME>
 
 Insert documents:
 
     20_insert_document_mongo.sh
     21_insert_document_mongo_propagation.sh
+
+*NOTE*: the first message sent may create a WARN because the topic still not exists.
 
 ## If somenthing is not working 
 
