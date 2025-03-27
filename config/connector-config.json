@@ -16,8 +16,11 @@
         "output.data.format": "JSON",
         "output.json.formatter": "com.mongodb.kafka.connect.source.json.formatter.DefaultJson",
         "pipeline": "[{\"$match\": {\"operationType\": \"insert\"}}]",
-
-        "transforms": "FieldJsonPathExample,MoveToHeader,extractPayload",        
+        "transforms": "ValueToKey,FieldToInt,FieldJsonPathExample,MoveToHeader,extractPayload",
+        "transforms.ValueToKey.type": "org.apache.kafka.connect.transforms.ValueToKey",
+        "transforms.ValueToKey.fields": "aggregateId",
+        "transforms.FieldToInt.type": "org.apache.kafka.connect.transforms.ExtractField$Key",
+        "transforms.FieldToInt.field": "aggregateId",
         "transforms.FieldJsonPathExample.type": "io.confluent.connect.transforms.ExtractTopic$Value",                                                
         "transforms.FieldJsonPathExample.field": "topicName",
         "transforms.MoveToHeader.type": "org.util.kafka.smt.HeaderFromFields",
