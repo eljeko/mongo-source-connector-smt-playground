@@ -28,12 +28,12 @@ Will clean reastart and prepeare mongo.
 Ohterwise you can:
 
     01_setup_mongo.sh
-    02_create_connector.sh
-    03_get_connector_config.sh
+    10_create_connector.sh
+    19_get_connector_config.sh
 
 Start consume messages:
 
-    10_consume_messages.sh <TOPIC_NAME>
+    30_consume_messages.sh <TOPIC_NAME>
 
 Insert documents:
 
@@ -50,7 +50,7 @@ check document in mongo with:
 
 List topics:
 
-    30_list_topics.sh
+    31_list_topics.sh
 
 ## Play with datagen if needed
 

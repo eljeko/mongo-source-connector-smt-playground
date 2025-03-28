@@ -25,4 +25,3 @@ use outbox
 db.loans.find().pretty();
 EOF
 echo "Done"
-
